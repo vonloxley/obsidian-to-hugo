@@ -18,8 +18,11 @@ def get_wiki_links(text: str) -> List[WikiLink]:
     - text: the possible extracted text
     """
     wiki_links = []
-    wiki_link_regex = r"\[\[(.*?)\]\]"
+    wiki_link_regex = r"(?ms:```.*```)|\[\[(.*?)\]\]"
     for match in re.finditer(wiki_link_regex, text):
+        if not match.group(1):
+            continue
+
         out = {
             "wiki_link": match.group(),
         }
