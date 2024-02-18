@@ -6,7 +6,7 @@ import os
 from shutil import rmtree, copytree, ignore_patterns
 from .wiki_links_processor import replace_wiki_links
 from .md_mark_processor import replace_md_marks
-
+from .md_blockquote_processor import replace_md_blockquotes
 
 class ObsidianToHugo:
     """
@@ -22,7 +22,7 @@ class ObsidianToHugo:
     ) -> None:
         self.obsidian_vault_dir = obsidian_vault_dir
         self.hugo_content_dir = hugo_content_dir
-        self.processors = [replace_wiki_links, replace_md_marks]
+        self.processors = [replace_wiki_links, replace_md_marks, replace_md_blockquotes]
         self.filters = []
         if processors:
             self.processors.extend(processors)
